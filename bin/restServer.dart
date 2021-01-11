@@ -1,5 +1,11 @@
-import 'package:dart_appwrite/dart_appwrite.dart';
+import 'package:shelf/shelf_io.dart' as shelf_io;
 
-void main(List<String> arguments) {
-  print('Hello world!');
+import 'service.dart';
+
+void main() async{
+  final service = Service();
+  final server = await shelf_io.serve(service.handler, 'localhost', 8080);
+  print('Server running on localhost:${server.port}');
 }
+
+
